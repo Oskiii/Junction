@@ -24,4 +24,9 @@ public class PlayerManager : MonoBehaviour {
 			PlayerObjects.Add (player.GetComponent<Player>());
 		}
 	}
+    
+    void GameOver()
+    {
+
+    }
 }
