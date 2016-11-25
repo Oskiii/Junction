@@ -22,6 +22,20 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         }
 	}
 
+    public void AddHealth(int amount)
+    {
+        health += amount;
+    }
+
+    public void AddSpeed(float amount)
+    {
+        moveSpeed += amount;
+    }
+
+    public Inventory GetInventory() {
+        return GetComponent<Inventory>();
+    }
+
 	#region IMoveable implementation
 	public void Move ()
 	{
