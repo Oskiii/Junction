@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour, IMoveable {
 	GameObject currentTarget;
 	Rigidbody2D rb;
 	public float moveSpeed;
+	bool ShouldMove = true;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
@@ -23,10 +24,11 @@ public class Ball : MonoBehaviour, IMoveable {
 	void SelectTarget(){
 		
 		currentTarget = PlayerManager.Instance.PlayerObjects [Random.Range (0, PlayerManager.Instance.PlayerObjects.Count-1)].gameObject;
+		ShouldMove = true;
 	}
 
 	void Update(){
-		if (currentTarget != null) {
+		if (currentTarget != null && ShouldMove) {
 			Move ();
 		}
 	}

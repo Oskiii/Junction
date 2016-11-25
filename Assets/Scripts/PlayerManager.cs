@@ -13,7 +13,12 @@ public class PlayerManager : MonoBehaviour {
 		Instance = this;
 	}
 
-	void Start () {
+	void Start(){
+
+		SpawnPlayers ();
+	}
+
+	void SpawnPlayers () {
 		for (int i = 0; i < PlayerAmount; i++) {
 			GameObject player = Instantiate (playerObject);
 			PlayerObjects.Add (player.GetComponent<Player>());
