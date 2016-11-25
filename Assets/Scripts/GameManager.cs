@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
     public int ZombieAmount = 4;
+    [SerializeField] private GameObject ZombieObject;
 	// Use this for initialization
     public void SpawnZombie()
     {

@@ -17,6 +17,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
     public void Resurrection(Vector2 direction)
     {
+        print("debug");
         box2d.enabled = true;
         moveDir = direction;
         health = DefaultHealth;
@@ -54,10 +55,6 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            
-        }
         if(ShouldMove == true)
         {
             Move();
