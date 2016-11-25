@@ -10,13 +10,14 @@ public class Ball : MonoBehaviour, IMoveable {
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
+		SelectTarget ();
 	}
 
 	#region IMoveable implementation
 
 	public void Move ()
 	{
-		rb.velocity = currentTarget.transform.position * moveSpeed;
+		rb.velocity = (currentTarget.transform.position - transform.position).normalized * moveSpeed;
 	}
 
 	#endregion
