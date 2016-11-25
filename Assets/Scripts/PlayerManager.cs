@@ -7,14 +7,16 @@ public class PlayerManager : MonoBehaviour {
 	[SerializeField] private GameObject playerObject;
 	public int PlayerAmount;
 	public List<Player> PlayerObjects;
+	public static PlayerManager Instance;
+
+	void Awake(){
+		Instance = this;
+	}
 
 	void Start () {
 		for (int i = 0; i < PlayerAmount; i++) {
-			Instantiate (playerObject);
+			GameObject player = Instantiate (playerObject);
+			PlayerObjects.Add (player.GetComponent<Player>());
 		}
-	}
-
-	void Update () {
-	
 	}
 }
