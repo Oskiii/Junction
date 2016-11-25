@@ -47,22 +47,22 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 			Character.transform.up = moveDir;
 		
 	}
-
+    #endregion
     public void Interact()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(rb.position, 2);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(rb.position, (float)0.5);
         for(int i = 0; i < colliders.Length; i++)
         {
             Collider2D call = colliders[i];
             if(call.GetComponent<Zombie>() != null)
             {
-                call.GetComponent<Zombie>().Resurrection(moveDir);
+                call.GetComponent<Zombie>().Resurrection((call.transform.position - Character.transform.position).normalized);
             }
         }
 
         
     }
-	#endregion
+	
 
 
 	#region IDamageable implementation
