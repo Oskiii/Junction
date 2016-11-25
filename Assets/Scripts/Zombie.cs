@@ -37,10 +37,13 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     public void TakeDamage(int amount)
     
     {
-        health -= amount;
         if(health <= 0)
         {
             box2d.enabled = false;
+        }
+        else if(health > 0)
+        {
+            health -= amount;
         }
     }
 
