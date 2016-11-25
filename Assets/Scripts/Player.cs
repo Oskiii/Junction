@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour, IDamageable {
+public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	private Vector2 moveDir;
 	public string Name;
@@ -15,13 +15,23 @@ public class Player : MonoBehaviour, IDamageable {
 	}
 
 	void Update(){
+		Move ();
+
+	}
+
+	#region IMoveable implementation
+	public void Move ()
+	{
+		
 		moveDir = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
 		rb.velocity = (moveDir * moveSpeed);
 
 		if(moveDir != Vector2.zero)
 			Character.transform.up = -moveDir;
-
+		
 	}
+	#endregion
+
 
 	#region IDamageable implementation
 
