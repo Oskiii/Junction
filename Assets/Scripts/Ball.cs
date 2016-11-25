@@ -15,14 +15,14 @@ public class Ball : MonoBehaviour, IMoveable {
 
 	public void Move ()
 	{
-		rb.velocity = (currentTarget * moveSpeed);
+		rb.velocity = currentTarget.transform.position * moveSpeed;
 	}
 
 	#endregion
 
 	void SelectTarget(){
 		
-		currentTarget = PlayerManager.Instance.PlayerObjects [Random.Range (0, PlayerManager.Instance.PlayerObjects.Count-1)];
+		currentTarget = PlayerManager.Instance.PlayerObjects [Random.Range (0, PlayerManager.Instance.PlayerObjects.Count-1)].gameObject;
 	}
 
 	void Update(){
