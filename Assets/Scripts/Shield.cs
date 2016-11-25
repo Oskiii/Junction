@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Shield : MonoBehaviour, PowerUp {
 	
-	private int amount;
+	private int amount = 1;
 
 	public void PickUp(Player player) {
 		

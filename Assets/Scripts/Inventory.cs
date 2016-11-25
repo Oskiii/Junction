@@ -19,21 +19,14 @@ public class Inventory : MonoBehaviour {
         }
 	}
 
-	public void Use(int button) { // 0 = O, 1 = kolmio, 2 = nelio, 3 = x
-        switch(button) {
-            case 0:
-                if (powerUps[0] != null)
+	public void Use(int button, Player player) { // 0 = O, 1 = kolmio, 2 = nelio, 3 = x
+        if (button <= 3 && button >= 0)
+        {
+            if(powerUps[button] != null)
                 {
-                    //use?
-                    powerUps[0] = null;
-                }
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
+                powerUps[button].Use(player);
+                powerUps[button] = null;
+            }
         }
 	}
 }

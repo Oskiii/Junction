@@ -5,7 +5,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	private Vector2 moveDir;
 	public string Name;
-	private int health;
+	private int health = 3;
 	public float moveSpeed;
 	[SerializeField] private GameObject Character;
 	private Rigidbody2D rb;
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     public void AddHealth(int amount)
     {
         health += amount;
+        print("hp"+health);
     }
 
     public void AddSpeed(float amount)
@@ -57,6 +58,9 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
             if(call.GetComponent<Zombie>() != null)
             {
                 call.GetComponent<Zombie>().Resurrection((call.transform.position - Character.transform.position).normalized);
+            }
+            if(call.GetComponent<PowerUp>() != null) {
+                call.GetComponent<PowerUp>().PickUp(this);
             }
         }
 
