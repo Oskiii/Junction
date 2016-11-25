@@ -15,7 +15,4 @@ public class Zombie : MonoBehaviour, IDamageable {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
 }
