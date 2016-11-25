@@ -13,13 +13,17 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     private Vector2 moveDir;
     [SerializeField] private GameObject ZombieObject;
     private Rigidbody2D rb;
+    private BoxCollider2D box2d;
 
     public void Resurrection(Vector2 direction)
     {
+        box2d.enabled = true;
         moveDir = direction;
         health = DefaultHealth;
         ShouldMove = true;
     }
+
+    public void Die() { }
 
     public void Move()
     {
@@ -33,21 +37,32 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     
     {
         health -= amount;
+        if(health <= 0)
+        {
+            box2d.enabled = false;
+        }
     }
 
     // Use this for initialization
     void Start () {
         health = 0;
         rb = GetComponent<Rigidbody2D>();
+        box2d = ZombieObject.GetComponent<BoxCollider2D>();
+        box2d.enabled = false;
         ShouldMove = false;
 	}
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            
+        }
         if(ShouldMove == true)
         {
             Move();
         }
+        
     }
 	
 	// Update is called once per frame

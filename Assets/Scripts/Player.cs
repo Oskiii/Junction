@@ -27,7 +27,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 		rb.velocity = (moveDir * moveSpeed);
 
 		if(moveDir != Vector2.zero)
-			Character.transform.up = -moveDir;
+			Character.transform.up = moveDir;
 		
 	}
 	#endregion
