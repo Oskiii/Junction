@@ -16,7 +16,10 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	void Update(){
 		Move ();
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Interact();
+        }
 	}
 
 	#region IMoveable implementation
@@ -30,6 +33,21 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 			Character.transform.up = moveDir;
 		
 	}
+
+    public void Interact()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(rb.position, 2);
+        for(int i = 0; i < colliders.Length; i++)
+        {
+            Collider2D call = colliders[i];
+            if(call.GetComponent<Zombie>() != null)
+            {
+                call.GetComponent<Zombie>().Resurrection(moveDir);
+            }
+        }
+
+        
+    }
 	#endregion
 
 
