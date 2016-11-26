@@ -4,17 +4,19 @@ using System.Collections;
 public class Shield : MonoBehaviour, PowerUp {
 	
 	private int amount = 1;
+    private float duration = 2;
 
 	public void PickUp(Player player) {
-		
-		player.AddHealth (amount);
-		Destroy (gameObject);
+
+        player.GetInventory().Add(this);
+        Destroy(gameObject);
 	}
 
     public IEnumerator Use(Player player)
-        //not an usable item
     {
-        yield return new WaitForSeconds(0);
+        player.setInvurnerable(true);
+        yield return new WaitForSeconds(duration);
+        player.setInvurnerable(false);
     }
 
     public GameObject getGameObject()

@@ -7,9 +7,10 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	public string Name;
 	private int health = 3;
     private int lives = 3;
-	public float moveSpeed;
+	private float moveSpeed;
 	[SerializeField] private GameObject Character;
 	private Rigidbody2D rb;
+    private bool invurnerable = false;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
@@ -51,6 +52,11 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         return GetComponent<Inventory>();
     }
 
+    public void setInvurnerable(bool boo)
+    {
+        invurnerable = boo;
+    }
+
 	#region IMoveable implementation
 	public void Move ()
 	{
@@ -87,11 +93,15 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	public void TakeDamage (int amount)
 	{
-        health -= amount;
-        if(health <= 0)
+        if (!invurnerable)
         {
-            Die();
+            health -= amount;
+            if(health <= 0)
+            {
+                Die();
+            }
         }
+        
 	}
 
 	#endregion

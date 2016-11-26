@@ -15,16 +15,12 @@ public class SpeedUp : MonoBehaviour, PowerUp {
 
     public void PickUp(Player player) {
         player.GetInventory().Add(this);
-
+        Destroy(gameObject);
 	}
 
     public IEnumerator Use(Player player) {
-        print("Speed up used");
-        float startTime = Time.time;
-
         player.AddSpeed(speedBonus);
         yield return new WaitForSeconds(duration);
-        print("Speed up ended");
         player.AddSpeed(-speedBonus);
     }
 }
