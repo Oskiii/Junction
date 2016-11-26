@@ -32,6 +32,7 @@ public class GUIManager : MonoBehaviour{
 	}
 
 	public HealthScorePanelFunctions GetHealthScorePanel(int playerID){
+		print (healthScores.Count);
 		return healthScores [playerID];
 	}
 

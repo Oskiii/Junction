@@ -36,7 +36,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 	}
 
     public void Die() {
-        print("debug");
+        print("died");
         box2d.enabled = false;
         rb.velocity = Vector2.zero;
         health = 0;
