@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     public void AddHealth(int amount)
     {
         health += amount;
-		GUIManager.Instance.AddHealth (0, amount);
+		GUIManager.Instance.GetHealthScorePanel (playerID).AddHealth (amount);
     }
 
     public void AddSpeed(float amount)
