@@ -15,6 +15,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     [SerializeField] private GameObject ZombieObject;
     private Rigidbody2D rb;
     private BoxCollider2D box2d;
+	private Animator anim;
 
     public void Resurrection(Vector2 direction)
     {
@@ -24,6 +25,8 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 			health = DefaultHealth;
 			ShouldMove = true;
 			StartCoroutine(Live());
+			anim.SetTrigger ("Resurrect");
+			anim.SetBool ("Move", true);
 		}
     }
 
@@ -38,14 +41,18 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         rb.velocity = Vector2.zero;
         health = 0;
         ShouldMove = false;
+		anim.SetBool ("Move", false);
+		anim.SetTrigger ("Die");
     }
 
     public void Move()
     {
         rb.velocity = (moveDir * MoveSpeed);
 
-        if (moveDir != Vector2.zero)
-            ZombieObject.transform.up = moveDir;
+		anim.SetBool ("Move", true);
+
+        //if (moveDir != Vector2.zero)
+            //ZombieObject.transform.up = moveDir;
     }
 
     public void TakeDamage(int amount)
@@ -73,6 +80,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         box2d = ZombieObject.GetComponent<BoxCollider2D>();
         box2d.enabled = false;
         ShouldMove = false;
+		anim = GetComponent<Animator> ();
 	}
 
     void Update()

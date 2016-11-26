@@ -20,6 +20,8 @@ public class GUIManager : MonoBehaviour{
     }
 
 	void Start(){
+		inventories = new List<InventoryPanelFunctions> ();
+		healthScores = new List<HealthScorePanelFunctions> ();
 		for(int i = 0; i < PlayerManager.Instance.PlayerAmount; i++){
 			CreatePlayerUI ();
 		}
@@ -36,8 +38,10 @@ public class GUIManager : MonoBehaviour{
 	public void CreatePlayerUI(){
 		GameObject ob = (GameObject)Instantiate (InventoryObject);
 		ob.transform.SetParent (InventoryParent.transform, false);
+		inventories.Add(ob.GetComponent<InventoryPanelFunctions>());
 		ob = (GameObject)Instantiate (ScoreObject);
 		ob.transform.SetParent (ScoreParent.transform, false);
+		healthScores.Add(ob.GetComponent<HealthScorePanelFunctions>());
 	}
 
     public void ShowGameOverScreen()
