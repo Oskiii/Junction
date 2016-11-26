@@ -7,7 +7,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	public string Name;
 	private int health = 3;
     private int lives = 3;
-	private float moveSpeed;
+	[SerializeField] private float moveSpeed;
 	[SerializeField] private GameObject Character;
 	private Rigidbody2D rb;
     private bool invurnerable = false;
