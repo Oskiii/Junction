@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
         GameObject zomb = (GameObject)Instantiate(ZombieObject, new Vector2 (Random.Range(-6, 6), Random.Range(-3,3)), Quaternion.identity);
     }
 	void Start () {
+        Time.timeScale = 1;
         for (int i = 0; i < ZombieAmount; i++)
         {
             SpawnZombie();
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour {
     public void GameOver()
     {
         Time.timeScale = 0;
+        GUIManager.Instance.ShowGameOverScreen();
     }
 	
 	// Update is called once per frame
