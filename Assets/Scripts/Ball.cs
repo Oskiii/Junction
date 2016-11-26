@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour, IMoveable {
 	GameObject currentTarget;
 	Rigidbody2D rb;
 	public float moveSpeed;
+    public int damage = 1;
 	bool ShouldMove = true;
 
 	void Start(){
@@ -32,5 +33,21 @@ public class Ball : MonoBehaviour, IMoveable {
 		if (currentTarget != null && ShouldMove) {
 			Move ();
 		}
+    
 	}
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Player")
+        {
+            
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+        }
+        if (collision.collider.tag == "Zombie")
+        {
+            
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<Zombie>().TakeDamage(damage);
+        }
+    }
 }
