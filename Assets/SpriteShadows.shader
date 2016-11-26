@@ -1,68 +1,190 @@
-﻿Shader "Sprites/Bumped Diffuse with Shadows"
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+// Shader for Unity integration with SpriteLamp
+// Written by Steve Karolewics &amp; Indreams Studios
+Shader "Custom/SpriteLamp"
 {
     Properties
     {
-        [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
-        _Color ("Tint", Color) = (1,1,1,1)
-        [PerRendererData] _BumpMap ("Normalmap", 2D) = "bump" {}
-        _BumpIntensity ("NormalMap Intensity", Range (-1, 2)) = 1
-        _BumpIntensity ("NormalMap Intensity", Float) = 1
-        [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
-        _Cutoff ("Alpha Cutoff", Range (0,1)) = 0.5
+        _MainTex ("Diffuse Texture", 2D) = "white" {}
+        _Normal ("Normal", 2D) = "bump" {}
+        _Depth ("Depth", 2D) = "gray" {}
+        _SpecColor ("Specular Material Color", Color) = (1,1,1,1) 
+        _Shininess ("Shininess", Float) = 10
+        _AmplifyDepth ("Amplify Depth", Float) = 1
+        _CelShadingLevels ("Cel Shading Levels", Float) = 0
     }
+ 
     SubShader
     {
-        Tags
-        { 
-            "Queue"="AlphaTest" 
-            "IgnoreProjector"="True" 
-            "RenderType"="TransparentCutOut" 
-            "PreviewType"="Plane"
-            "CanUseSpriteAtlas"="True"
+        AlphaTest NotEqual 0.0
+        Pass
+        {    
+            Tags { "LightMode" = "ForwardBase" }
+ 
+            CGPROGRAM
+ 
+            #pragma vertex vert  
+            #pragma fragment frag 
+ 
+            #include "UnityCG.cginc"
+ 
+            // User-specified properties
+            uniform sampler2D _MainTex;
+ 
+            struct VertexInput
+            {
+                float4 vertex : POSITION;
+                float4 color : COLOR;
+                float4 uv : TEXCOORD0;    
+            };
+ 
+            struct VertexOutput
+            {
+                float4 pos : POSITION;
+                float4 color : COLOR;
+                float2 uv : TEXCOORD0;
+            };
+ 
+            VertexOutput vert(VertexInput input) 
+            {
+                VertexOutput output;
+ 
+                output.pos = mul(UNITY_MATRIX_MVP, input.vertex);
+                output.color = input.color;
+                output.uv = float2(input.uv.x, input.uv.y);
+                return output;
+            }
+ 
+            float4 frag(VertexOutput input) : COLOR
+            {
+                float4 diffuseColor = tex2D(_MainTex, input.uv);
+ 
+                float3 ambientLighting = unity_AmbientSky * float3(diffuseColor.x, diffuseColor.y, diffuseColor.z) *
+                    float3(input.color.r, input.color.g, input.color.b);
+                return float4(ambientLighting.x, ambientLighting.y, ambientLighting.z, diffuseColor.a);
+            }
+ 
+            ENDCG
         }
-        LOD 300
-        Cull Off
-        Lighting On
-        ZWrite On
-        Fog { Mode Off }
-        CGPROGRAM
-        #pragma target 3.0
-        #pragma surface surf Lambert alpha vertex:vert  alphatest:_Cutoff fullforwardshadows
-        #pragma multi_compile DUMMY PIXELSNAP_ON 
-        #pragma exclude_renderers flash
-        sampler2D _MainTex;
-        sampler2D _BumpMap;
-        fixed _BumpIntensity;
-        
-        fixed4 _Color;
-        struct Input
-        {
-            float2 uv_MainTex;
-            float2 uv_BumpMap;
-            fixed4 color;
-        };
-        
-        void vert (inout appdata_full v, out Input o)
-        {
-            #if defined(PIXELSNAP_ON) && !defined(SHADER_API_FLASH)
-            v.vertex = UnityPixelSnap (v.vertex);
-            #endif
-            v.normal = float3(0,0,-1);
-            v.tangent =  float4(1, 0, 0, 1);
-            UNITY_INITIALIZE_OUTPUT(Input, o);
-            o.color = _Color;
+ 
+        Pass
+        {    
+            Tags { "LightMode" = "ForwardAdd" }
+            Blend One One // additive blending 
+ 
+            CGPROGRAM
+ 
+            #pragma vertex vert  
+            #pragma fragment frag 
+ 
+            #include "UnityCG.cginc"
+ 
+            // User-specified properties
+            uniform sampler2D _MainTex;
+            uniform sampler2D _Normal;
+            uniform sampler2D _Depth;
+            uniform float4 _SpecColor; 
+            uniform float4 _LightColor0;
+            uniform float _Shininess;
+            uniform float _AmplifyDepth;
+            uniform float _CelShadingLevels;
+ 
+            struct VertexInput
+            {
+                float4 vertex : POSITION;
+                float4 color : COLOR;
+                float4 uv : TEXCOORD0;
+            };
+ 
+            struct VertexOutput
+            {
+                float4 pos : POSITION;
+                float4 color : COLOR;
+                float2 uv : TEXCOORD0;
+                float4 posWorld : TEXCOORD1;
+            };
+ 
+            VertexOutput vert(VertexInput input)
+            {
+                VertexOutput output;
+ 
+                output.pos = mul(UNITY_MATRIX_MVP, input.vertex);
+                output.posWorld = mul(unity_ObjectToWorld, input.vertex);
+ 
+                output.uv = float2(input.uv.x, input.uv.y);
+                output.color = input.color;
+                return output;
+            }
+ 
+            float4 frag(VertexOutput input) : COLOR
+            {
+                float4 diffuseColor = tex2D(_MainTex, input.uv);
+ 
+                // To compute the correct normal: 
+                //   1) Get the pixel value from the normal map
+                //   2) Subtract 0.5 and multiply by 2 to convert from the range 0...1 to -1...1
+                //   3) Multiply by world to object matrix, to handle rotation, etc
+                //   4) Negate Z so that lighting works as expected (sprites further away from the camera than
+                //      a light are lit, etc.)
+                //   5) Normalize
+                float3 normalDirection = (tex2D(_Normal, input.uv).xyz - 0.5f) * 2.0f;
+                normalDirection = float3(mul(float4(normalDirection.x, normalDirection.y, normalDirection.z, 1.0f), unity_WorldToObject).x, mul(float4(normalDirection.x, normalDirection.y, normalDirection.z, 1.0f), unity_WorldToObject).y, mul(float4(normalDirection.x, normalDirection.y, normalDirection.z, 1.0f), unity_WorldToObject).z);
+                normalDirection.z *= -1;
+                normalDirection = normalize(normalDirection);
+ 
+                // To adjust depth:
+                //   1) Get the depth value from the depth map
+                //   2) Subtract 0.5 and multiply by 2 to convert from the range 0...1 to -1...1
+                //   3) Multiply by the amplify depth value, and subtract from the fragment's z position
+                float depthColor = (tex2D(_Depth, input.uv).x - 0.5f) * 2.0f;
+                float3 posWorld = float3(input.posWorld.x, input.posWorld.y, input.posWorld.z);
+                posWorld.z -= depthColor * _AmplifyDepth;
+                float3 vertexToLightSource = float3(_WorldSpaceLightPos0.x, _WorldSpaceLightPos0.y, _WorldSpaceLightPos0.z) - posWorld;
+                float distance = length(vertexToLightSource);
+ 
+                // The values for attenuation and lightDirection are assuming point lights
+                float attenuation = 1.0 / distance; // Linear attenuation is good enough for now
+                float3 lightDirection = normalize(vertexToLightSource);
+ 
+                // Compute diffuse part of lighting
+                float normalDotLight = dot(normalDirection, lightDirection);
+                float diffuseLevel = attenuation * max(0.0f, normalDotLight);
+ 
+                // Compute specular part of lighting
+                float specularLevel;
+                if (normalDotLight < 0.0f)
+                {
+                    // Light is on the wrong side, no specular reflection
+                    specularLevel = 0.0f;
+                }
+                else
+                {
+                    // For orthographic cameras, the view direction is always known
+                    float3 viewDirection = float3(0.0f, 0.0f, -1.0f);
+                    specularLevel = attenuation * pow(max(0.0, dot(reflect(-lightDirection, normalDirection),
+                        viewDirection)), _Shininess);
+                }
+ 
+                // Add cel-shading if enough levels were specified
+                if (_CelShadingLevels >= 2)
+                {
+                    diffuseLevel = floor(diffuseLevel * _CelShadingLevels) / (_CelShadingLevels - 0.5f);
+                    specularLevel = floor(specularLevel * _CelShadingLevels) / (_CelShadingLevels - 0.5f);
+                }
+ 
+                float3 diffuseReflection = float3(diffuseColor.x, diffuseColor.y, diffuseColor.z) * input.color *
+                    float3(_LightColor0.x, _LightColor0.y, _LightColor0.z) * diffuseLevel;
+                float3 specularReflection = float3(_LightColor0.x, _LightColor0.y, _LightColor0.z) * float3(_SpecColor.x, _SpecColor.y, _SpecColor.z) *
+                    input.color * specularLevel;
+                return float4((diffuseReflection + specularReflection).x, (diffuseReflection + specularReflection).y, (diffuseReflection + specularReflection).z, diffuseColor.a);
+             }
+ 
+             ENDCG
         }
-        void surf (Input IN, inout SurfaceOutput o)
-        {
-            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * IN.color;
-            o.Albedo = c.rgb;
-            o.Alpha = c.a;
-            o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
-            _BumpIntensity = 1 / _BumpIntensity;
-            o.Normal.z = o.Normal.z * _BumpIntensity;
-            o.Normal = normalize((half3)o.Normal);
-        }
-        ENDCG
     }
-Fallback "Transparent/Cutout/Diffuse"
+    // The definition of a fallback shader should be commented out 
+    // during development:
+    // Fallback "Transparent/Diffuse"
 }
