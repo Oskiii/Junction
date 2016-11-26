@@ -5,6 +5,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	private Vector2 moveDir;
 	public string Name;
+	public int playerID;
 	private int health = 3;
     private int lives = 3;
 	[SerializeField] private float moveSpeed;
@@ -13,11 +14,14 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	private Animator anim;
     private bool invurnerable = false;
 	private bool facingRight = true;
+	private Inventory inventory;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 	}
+
+
 
 	void Update(){
 		Move ();
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     public void AddHealth(int amount)
     {
         health += amount;
+		GUIManager.Instance.AddHealth (amount);
     }
 
     public void AddSpeed(float amount)

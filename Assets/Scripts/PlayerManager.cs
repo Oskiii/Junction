@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour {
 		for (int i = 0; i < PlayerAmount; i++) {
 			GameObject player = Instantiate (playerObject);
 			PlayerObjects.Add (player.GetComponent<Player>());
+			player.GetComponent<Player> ().playerID = i;
 		}
 	}
     
