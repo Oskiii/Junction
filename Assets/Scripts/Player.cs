@@ -37,7 +37,8 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.C)) { GetComponent<Inventory>().Use(2, this); }
         if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.V)) { GetComponent<Inventory>().Use(3, this); }
 
-		//tähän vaan axisien mukaan aimArrow.SetDirection(direction); (se pitää kans asetella jalkoihin jossain)
+        aimArrow.SetDirection(new Vector2(Input.GetAxisRaw("RightH"), Input.GetAxisRaw("RightV")));
+        //tähän vaan axisien mukaan aimArrow.SetDirection(direction); (se pitää kans asetella jalkoihin jossain)
     }
 
     public void AddHealth(int amount)
