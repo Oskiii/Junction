@@ -135,6 +135,11 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
         
     }
+
+    public Indicator getIndicator()
+    {
+        return aimArrow;
+    }
 	
 
 
