@@ -25,10 +25,10 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         {
             Interact();
         }
-        if (Input.GetKeyDown(KeyCode.Z)) { GetComponent<Inventory>().Use(0, this); }
-        if (Input.GetKeyDown(KeyCode.X)) { GetComponent<Inventory>().Use(1, this); }
-        if (Input.GetKeyDown(KeyCode.C)) { GetComponent<Inventory>().Use(2, this); }
-        if (Input.GetKeyDown(KeyCode.V)) { GetComponent<Inventory>().Use(3, this); }
+        if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Z)) { GetComponent<Inventory>().Use(0, this); }
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.X)) { GetComponent<Inventory>().Use(1, this); }
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.C)) { GetComponent<Inventory>().Use(2, this); }
+        if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.V)) { GetComponent<Inventory>().Use(3, this); }
     }
 
     public void AddHealth(int amount)
