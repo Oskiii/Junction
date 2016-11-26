@@ -23,6 +23,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 			moveDir = direction;
 			health = DefaultHealth;
 			ShouldMove = true;
+			StartCoroutine(Live());
 		}
     }
 
