@@ -5,7 +5,7 @@ public interface PowerUp {
 
     void PickUp(Player player);
 
-    void Use(Player player);
+    IEnumerator Use(Player player);
 
     GameObject getGameObject();
 }

@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour {
         { 
             if (powerUps[button] != null)
             {
-                powerUps[button].Use(player);
+                StartCoroutine( powerUps[button].Use(player) );
                 powerUps[button] = null;
                 nofPowerUps -= 1;
             }

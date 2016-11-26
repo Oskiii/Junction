@@ -11,10 +11,10 @@ public class Shield : MonoBehaviour, PowerUp {
 		Destroy (gameObject);
 	}
 
-    public void Use(Player player)
+    public IEnumerator Use(Player player)
         //not an usable item
     {
-
+        yield return new WaitForSeconds(0);
     }
 
     public GameObject getGameObject()
