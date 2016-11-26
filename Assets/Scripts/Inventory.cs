@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Inventory : MonoBehaviour {
 
+    private Sprite[] sprites = { }; 
     private PowerUp[] powerUps = { null, null, null, null };
     private int nofPowerUps = 0;
 
@@ -14,6 +15,7 @@ public class Inventory : MonoBehaviour {
                 {
                     powerUps[i] = powerup;
                     nofPowerUps += 1;
+                    GUIManager.Instance.SetInventoryImage(i, powerup.getSprite());
                     break;
                 }
             }

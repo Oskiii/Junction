@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Shield : MonoBehaviour, PowerUp {
-	
+
+    [SerializeField] Sprite sprite;
 	private int amount = 1;
     private float duration = 2;
 
@@ -22,5 +24,10 @@ public class Shield : MonoBehaviour, PowerUp {
     public GameObject getGameObject()
     {
         return gameObject;
+    }
+
+    public Sprite getSprite()
+    {
+        return sprite;
     }
 }

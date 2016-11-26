@@ -4,6 +4,7 @@ using System;
 
 public class SpeedUp : MonoBehaviour, PowerUp {
 
+    [SerializeField] Sprite sprite;
 	private float duration = 5;
 	private float speedBonus = 5;
     private bool timerOn = false;
@@ -11,6 +12,11 @@ public class SpeedUp : MonoBehaviour, PowerUp {
     public GameObject getGameObject()
     {
         return gameObject;
+    }
+
+    public Sprite getSprite()
+    {
+        return sprite;
     }
 
     public void PickUp(Player player) {

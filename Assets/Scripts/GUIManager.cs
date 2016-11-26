@@ -14,7 +14,7 @@ public class GUIManager : MonoBehaviour {
         Instance = this;
     }
 
-    void SetInventoryImage(int slot, Sprite spr){
+    public void SetInventoryImage(int slot, Sprite spr){
 		inventorySlots [slot].sprite = spr;
 	}
 
