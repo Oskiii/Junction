@@ -18,4 +18,9 @@ public class EmptySlot : MonoBehaviour, PowerUp
     {
         return gameObject;
     }
+
+    public Sprite getSprite()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Shield : MonoBehaviour, PowerUp {
-	
-	private int amount = 1;
+public class Shield : MonoBehaviour, PowerUp
+{
+
+    [SerializeField]
+    Sprite sprite;
+    private int amount = 1;
     private float duration = 2;
 
-	public void PickUp(Player player) {
+    public void PickUp(Player player)
+    {
 
         player.GetInventory().Add(this);
         Destroy(gameObject);
-	}
+    }
 
     public IEnumerator Use(Player player)
     {
@@ -22,5 +27,10 @@ public class Shield : MonoBehaviour, PowerUp {
     public GameObject getGameObject()
     {
         return gameObject;
+    }
+
+    public Sprite getSprite()
+    {
+        return sprite;
     }
 }
