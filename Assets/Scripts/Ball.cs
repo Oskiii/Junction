@@ -20,7 +20,6 @@ public class Ball : MonoBehaviour, IMoveable {
 	{
         Vector2 moveDir = (currentTarget.transform.position - transform.position).normalized;
         float angle = (Mathf.Atan2(moveDir.y, moveDir.x) * 180/Mathf.PI + 270) % 360;
-        print(angle);
         rb.velocity = moveDir * moveSpeed;
         if (22.5 > angle || angle > 337.5)
         {

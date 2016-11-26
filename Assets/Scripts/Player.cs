@@ -14,10 +14,16 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	private Animator anim;
     private bool invurnerable = false;
 	private bool facingRight = false;
+    [SerializeField] private GameObject arrowObject;
+	private Indicator aimArrow;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
+
+		GameObject g = (GameObject) Instantiate(arrowObject, transform.position, transform.rotation);
+		g.GetComponent<Indicator> ().player = this;
+		aimArrow = g.GetComponent<Indicator> ();
 	}
 
 	void Update(){
@@ -30,6 +36,8 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.X)) { GetComponent<Inventory>().Use(1, this); }
         if (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.C)) { GetComponent<Inventory>().Use(2, this); }
         if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.V)) { GetComponent<Inventory>().Use(3, this); }
+
+		//tähän vaan axisien mukaan aimArrow.SetDirection(direction); (se pitää kans asetella jalkoihin jossain)
     }
 
     public void AddHealth(int amount)

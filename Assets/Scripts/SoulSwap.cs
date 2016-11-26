@@ -2,12 +2,10 @@
 using System.Collections;
 using System;
 
-public class SpeedUp : MonoBehaviour, PowerUp
+public class SoulSwap : MonoBehaviour, PowerUp
 {
-
     [SerializeField] Sprite sprite;
-    private float duration = 5;
-    private float speedBonus = 5;
+    [SerializeField] SoulSwapObj obj;
 
     public GameObject getGameObject()
     {
@@ -27,8 +25,8 @@ public class SpeedUp : MonoBehaviour, PowerUp
 
     public IEnumerator Use(Player player)
     {
-        player.AddSpeed(speedBonus);
-        yield return new WaitForSeconds(duration);
-        player.AddSpeed(-speedBonus);
+        Instantiate(obj, player.transform.position, player.transform.rotation);
+        //obj.shoot(INDICATOR DIR);
+        yield return new WaitForSeconds(0);
     }
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9dc770e0578c136428510ad98620599b
-timeCreated: 1480186204
+timeCreated: 1480189684
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -61,10 +61,10 @@ TextureImporter:
       name: FireBallAnimation_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 8
         y: 1
-        width: 13
-        height: 28
+        width: 9
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -74,10 +74,10 @@ TextureImporter:
       name: FireBallAnimation_1
       rect:
         serializedVersion: 2
-        x: 41
+        x: 31
         y: 1
-        width: 13
-        height: 30
+        width: 10
+        height: 22
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -87,10 +87,10 @@ TextureImporter:
       name: FireBallAnimation_2
       rect:
         serializedVersion: 2
-        x: 74
+        x: 56
         y: 1
-        width: 13
-        height: 31
+        width: 9
+        height: 22
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,10 +100,10 @@ TextureImporter:
       name: FireBallAnimation_3
       rect:
         serializedVersion: 2
-        x: 106
+        x: 80
         y: 1
-        width: 12
-        height: 30
+        width: 9
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,10 +113,10 @@ TextureImporter:
       name: FireBallAnimation_4
       rect:
         serializedVersion: 2
-        x: 137
+        x: 104
         y: 1
-        width: 13
-        height: 31
+        width: 9
+        height: 23
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
