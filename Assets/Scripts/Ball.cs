@@ -37,18 +37,17 @@ public class Ball : MonoBehaviour, IMoveable {
 	}
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.collider.name);
         if(collision.collider.tag == "Player")
         {
             
             Destroy(gameObject);
-            //collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
         }
         if (collision.collider.tag == "Zombie")
         {
             
             Destroy(gameObject);
-            //collision.gameObject.GetComponent<Zombie>().TakeDamage(damage);
+            collision.gameObject.GetComponent<Zombie>().TakeDamage(damage);
         }
     }
 }

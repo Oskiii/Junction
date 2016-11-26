@@ -8,7 +8,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     public float MoveSpeed;
     public bool ShouldMove;
 
-    [SerializeField] private int DefaultHealth = 1;
+    [SerializeField] private int DefaultHealth = 2;
     private int health;
     private Vector2 moveDir;
     [SerializeField] private GameObject ZombieObject;
@@ -17,14 +17,20 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
     public void Resurrection(Vector2 direction)
     {
-        print("debug");
+   
         box2d.enabled = true;
         moveDir = direction;
         health = DefaultHealth;
         ShouldMove = true;
     }
 
-    public void Die() { }
+    public void Die() {
+        print("debug");
+        box2d.enabled = false;
+        rb.velocity = Vector2.zero;
+        health = 0;
+        ShouldMove = false;
+    }
 
     public void Move()
     {
@@ -44,6 +50,11 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         else if(health > 0)
         {
             health -= amount;
+            print(health);
+            if(health <= 0)
+            {
+                Die();
+            }
         }
     }
 
