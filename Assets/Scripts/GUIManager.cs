@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class GUIManager : MonoBehaviour{
 
-	[SerializeField] private List<Image> inventorySlots;
     [SerializeField] private GameObject GameOver;
-	[SerializeField] private Text health;
-	[SerializeField] private Text score;
 	[SerializeField] private GameObject InventoryObject;
 	[SerializeField] private GameObject InventoryParent;
+	private List<InventoryPanelFunctions> inventories;
 	[SerializeField] private GameObject ScoreObject;
 	[SerializeField] private GameObject ScoreParent;
+	private List<HealthScorePanelFunctions> healthScores;
     public static GUIManager Instance;
 
     void Awake()
@@ -21,8 +20,17 @@ public class GUIManager : MonoBehaviour{
     }
 
 	void Start(){
-		AddHealth (0, 0);
-		AddScore (0, 0);
+		for(int i = 0; i < PlayerManager.Instance.PlayerAmount; i++){
+			CreatePlayerUI ();
+		}
+	}
+
+	public InventoryPanelFunctions GetInventoryPanel(int playerID){
+		return inventories [playerID];
+	}
+
+	public HealthScorePanelFunctions GetHealthScorePanel(int playerID){
+		return healthScores [playerID];
 	}
 
 	public void CreatePlayerUI(){
@@ -32,20 +40,9 @@ public class GUIManager : MonoBehaviour{
 		ob.transform.SetParent (ScoreParent.transform, false);
 	}
 
-    void SetInventoryImage(int slot, Sprite spr){
-		inventorySlots [slot].sprite = spr;
-	}
-
     public void ShowGameOverScreen()
     {
         GameOver.SetActive(true);
     }
-
-	public void AddHealth(int playerID, int amount){
-		health.text = (int.Parse(health.text) + amount).ToString();
-	}
-
-	public void AddScore(int playerID, int amount){
-		score.text = (int.Parse(score.text) + amount).ToString();
-	}
+		
 }
