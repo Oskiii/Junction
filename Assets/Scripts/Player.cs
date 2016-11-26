@@ -10,10 +10,13 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	[SerializeField] private float moveSpeed;
 	[SerializeField] private GameObject Character;
 	private Rigidbody2D rb;
+	private Animator anim;
     private bool invurnerable = false;
+	private bool facingRight = true;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
+		anim = GetComponent<Animator> ();
 	}
 
 	void Update(){
@@ -64,11 +67,36 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 		moveDir = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
 		rb.velocity = (moveDir * moveSpeed);
 
+		if (rb.velocity != Vector2.zero) {
+			anim.SetBool ("Walk", true);
+
+			if (rb.velocity.x > 0 && !facingRight) {
+				FlipSprite ();
+			} else if (rb.velocity.x < 0 && facingRight) {
+				FlipSprite ();
+			}
+
+		} else {
+			anim.SetBool ("Walk", false);
+		}
+
 		/*if(moveDir != Vector2.zero)
 			Character.transform.up = moveDir;*/
 		
 	}
     #endregion
+
+	void FlipSprite(){
+
+		Character.transform.localScale = new Vector2(-Character.transform.localScale.x, Character.transform.localScale.y);
+
+		if (facingRight) {
+			facingRight = false;
+		} else {
+			facingRight = true;
+		}
+	}
+
     public void Interact()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(rb.position, (float)0.5);
