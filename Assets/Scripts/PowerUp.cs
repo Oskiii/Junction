@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface PowerUp {
+public interface PowerUp
+{
+
+    Sprite getSprite();
 
     void PickUp(Player player);
 

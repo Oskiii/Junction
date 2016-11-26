@@ -7,7 +7,7 @@ public class InventoryPanelFunctions : MonoBehaviour {
 
 	[SerializeField] private List<Image> inventorySlots;
 
-	void SetInventoryImage(int slot, Sprite spr){
+	public void SetInventoryImage(int slot, Sprite spr){
 		inventorySlots [slot].sprite = spr;
 	}
 }
