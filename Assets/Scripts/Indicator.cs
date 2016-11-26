@@ -13,4 +13,8 @@ public class Indicator : MonoBehaviour {
 	public void SetDirection(Vector2 dir){
 		transform.rotation = Quaternion.LookRotation(dir);
 	}
+
+    public Vector2 getDir() {
+        return dir;
+    }
 }
