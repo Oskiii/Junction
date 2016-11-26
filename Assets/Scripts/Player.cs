@@ -13,7 +13,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	private Rigidbody2D rb;
 	private Animator anim;
     private bool invurnerable = false;
-	private bool facingRight = true;
+	private bool facingRight = false;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
@@ -73,9 +73,9 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 			anim.SetBool ("Walk", true);
 
 			if (rb.velocity.x > 0 && !facingRight) {
-				FlipSprite ();
+				//FlipSprite ();
 			} else if (rb.velocity.x < 0 && facingRight) {
-				FlipSprite ();
+				//FlipSprite ();
 			}
 
 		} else {
