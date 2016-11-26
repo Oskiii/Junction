@@ -7,6 +7,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     public string Name;
     public float MoveSpeed;
     public bool ShouldMove;
+	[SerializeField] private float lifeTime;
 
     [SerializeField] private int DefaultHealth = 2;
     private int health;
@@ -17,12 +18,18 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
     public void Resurrection(Vector2 direction)
     {
-   
-        box2d.enabled = true;
-        moveDir = direction;
-        health = DefaultHealth;
-        ShouldMove = true;
+		if (health <= 0) {
+			box2d.enabled = true;
+			moveDir = direction;
+			health = DefaultHealth;
+			ShouldMove = true;
+		}
     }
+
+	IEnumerator Live(){
+		yield return new WaitForSeconds (lifeTime);
+		Die ();
+	}
 
     public void Die() {
         print("debug");
@@ -75,6 +82,4 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         }
         
     }
-	
-	// Update is called once per frame
 }
