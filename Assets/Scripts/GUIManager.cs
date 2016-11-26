@@ -21,8 +21,8 @@ public class GUIManager : MonoBehaviour{
     }
 
 	void Start(){
-		AddHealth (0);
-		AddScore (0);
+		AddHealth (0, 0);
+		AddScore (0, 0);
 	}
 
 	public void CreatePlayerUI(){
@@ -41,11 +41,11 @@ public class GUIManager : MonoBehaviour{
         GameOver.SetActive(true);
     }
 
-	public void AddHealth(int amount){
+	public void AddHealth(int playerID, int amount){
 		health.text = (int.Parse(health.text) + amount).ToString();
 	}
 
-	public void AddScore(int amount){
+	public void AddScore(int playerID, int amount){
 		score.text = (int.Parse(score.text) + amount).ToString();
 	}
 }

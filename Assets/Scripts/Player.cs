@@ -14,14 +14,11 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	private Animator anim;
     private bool invurnerable = false;
 	private bool facingRight = true;
-	private Inventory inventory;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 	}
-
-
 
 	void Update(){
 		Move ();
@@ -38,7 +35,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     public void AddHealth(int amount)
     {
         health += amount;
-		GUIManager.Instance.AddHealth (amount);
+		GUIManager.Instance.AddHealth (0, amount);
     }
 
     public void AddSpeed(float amount)
