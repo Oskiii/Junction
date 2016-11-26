@@ -14,10 +14,13 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	private Animator anim;
     private bool invurnerable = false;
 	private bool facingRight = false;
+    private Indicator arrow;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
+        arrow = new Indicator(this);
+        Instantiate(arrow.gameObject, transform.position, transform.rotation);
 	}
 
 	void Update(){
