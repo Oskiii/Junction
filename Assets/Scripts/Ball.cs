@@ -48,7 +48,7 @@ public class Ball : MonoBehaviour, IMoveable {
             
             Destroy(gameObject);
             collision.gameObject.GetComponent<Zombie>().TakeDamage(damage);
-			GUIManager.Instance.AddScore (0, 1);
+			GUIManager.Instance.GetHealthScorePanel (0).AddScore (1);
         }
     }
 }
