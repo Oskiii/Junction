@@ -19,10 +19,42 @@ public class Ball : MonoBehaviour, IMoveable {
 	public void Move ()
 	{
         Vector2 moveDir = (currentTarget.transform.position - transform.position).normalized;
-
+        float angle = (Mathf.Atan2(moveDir.y, moveDir.x) * 180/Mathf.PI + 270) % 360;
+        print(angle);
         rb.velocity = moveDir * moveSpeed;
-        if (moveDir != Vector2.zero)
-            transform.up = -moveDir;
+        if (22.5 > angle || angle > 337.5)
+        {
+            moveDir = new Vector2(0, 1);
+        }
+        else if (angle < 67.5)
+        {
+            moveDir = new Vector2(-1, 1).normalized;
+        }
+        else if (angle < 112.5)
+        {
+            moveDir = new Vector2(-1, 0);
+        }
+        else if ( angle < 157.5)
+        {
+            moveDir = new Vector2(-1, -1).normalized;
+        }
+        else if (angle < 202.5)
+        {
+            moveDir = new Vector2(0, -1);
+        }
+        else if (angle < 247.5)
+        {
+            moveDir = new Vector2(1, -1).normalized;
+        }
+        else if (angle < 292.5)
+        {
+            moveDir = new Vector2(1, 0);
+        }
+        else
+        {
+            moveDir = new Vector2(1, 1).normalized;
+        }
+        transform.up = -moveDir;
     }
 
     #endregion
