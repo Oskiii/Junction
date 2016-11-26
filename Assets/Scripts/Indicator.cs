@@ -11,6 +11,6 @@ public class Indicator : MonoBehaviour {
 	}
 
 	public void SetDirection(Vector2 dir){
-		transform.rotation = Quaternion.LookRotation(dir);
+		transform.rotation = Quaternion.Euler(dir);
 	}
 }
