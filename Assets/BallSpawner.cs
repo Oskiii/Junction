@@ -8,10 +8,9 @@ public class BallSpawner : MonoBehaviour {
 	public float SpawnDelay;
 	private float lastSpawn;
 
-
-
 	void SpawnBall(){
 		GameObject ball = (GameObject)Instantiate (Ammo, transform.position, Quaternion.identity);
+		Destroy (gameObject);
 	}
 
 	void Update(){
