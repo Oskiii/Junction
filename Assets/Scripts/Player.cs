@@ -5,6 +5,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	private Vector2 moveDir;
 	public string Name;
+	public int playerID;
 	private int health = 3;
     private int lives = 3;
 	[SerializeField] private float moveSpeed;
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     public void AddHealth(int amount)
     {
         health += amount;
+		GUIManager.Instance.AddHealth (0, amount);
     }
 
     public void AddSpeed(float amount)
