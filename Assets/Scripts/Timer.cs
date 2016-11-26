@@ -9,4 +9,6 @@ public class Timer : MonoBehaviour {
 		duration = _duration;
 
 	}
+
+
 }

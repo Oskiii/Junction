@@ -58,8 +58,8 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 		moveDir = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
 		rb.velocity = (moveDir * moveSpeed);
 
-		if(moveDir != Vector2.zero)
-			Character.transform.up = moveDir;
+		/*if(moveDir != Vector2.zero)
+			Character.transform.up = moveDir;*/
 		
 	}
     #endregion
