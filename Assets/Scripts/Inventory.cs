@@ -4,6 +4,7 @@ using System.Collections;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] Sprite defaultSprite;
+    private int[] order = { 0, 2, 3, 1 };
     private PowerUp[] powerUps = { null, null, null, null };
     private int nofPowerUps = 0;
 
@@ -11,7 +12,7 @@ public class Inventory : MonoBehaviour
     {
         if (nofPowerUps < 4)
         {
-            for (int i = 0; i < 4; i++)
+            foreach (int i in order)
             {
                 if (powerUps[i] == null)
                 {
@@ -25,7 +26,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void Use(int button, Player player)
-    { // 0 = O, 1 = kolmio, 2 = nelio, 3 = x
+    { 
         if (button <= 3 && button >= 0)
         {
             if (powerUps[button] != null)
