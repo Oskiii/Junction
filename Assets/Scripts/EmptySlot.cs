@@ -9,7 +9,7 @@ public class EmptySlot : MonoBehaviour, PowerUp
         throw new NotImplementedException();
     }
 
-    public void Use(Player player)
+    public IEnumerator Use(Player player)
     {
         throw new NotImplementedException();
     }

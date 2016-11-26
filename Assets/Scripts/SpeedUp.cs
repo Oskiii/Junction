@@ -4,8 +4,8 @@ using System;
 
 public class SpeedUp : MonoBehaviour, PowerUp {
 
-	private float duration = 50000;
-	private float speedBonus = 50;
+	private float duration = 5;
+	private float speedBonus = 5;
     private bool timerOn = false;
 
     public GameObject getGameObject()
@@ -18,12 +18,12 @@ public class SpeedUp : MonoBehaviour, PowerUp {
 
 	}
 
-    public void Use(Player player) {
+    public IEnumerator Use(Player player) {
         print("Speed up used");
         float startTime = Time.time;
 
         player.AddSpeed(speedBonus);
-        //wait
+        yield return new WaitForSeconds(duration);
         print("Speed up ended");
         player.AddSpeed(-speedBonus);
     }
