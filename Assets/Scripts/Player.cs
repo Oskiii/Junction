@@ -37,12 +37,12 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         moveSpeed += amount;
     }
 
-    public void kill()
+    public void Die()
     {
         lives -= 1;
         if (lives <= 0)
         {
-            
+            GameManager.Instance.GameOver();
         }
         
     }
@@ -87,7 +87,11 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	public void TakeDamage (int amount)
 	{
-		throw new System.NotImplementedException ();
+        health -= amount;
+        if(health <= 0)
+        {
+            Die();
+        }
 	}
 
 	#endregion

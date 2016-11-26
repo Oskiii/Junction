@@ -4,6 +4,12 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
     public int ZombieAmount = 4;
     [SerializeField] private GameObject ZombieObject;
+    public static GameManager Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 	// Use this for initialization
     public void SpawnZombie()
     {
@@ -14,6 +20,11 @@ public class GameManager : MonoBehaviour {
         {
             SpawnZombie();
         }
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
     }
 	
 	// Update is called once per frame
