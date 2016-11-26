@@ -5,8 +5,7 @@ using System;
 public class SpeedUp : MonoBehaviour, PowerUp
 {
 
-    [SerializeField]
-    Sprite sprite;
+    [SerializeField] Sprite sprite;
     private float duration = 5;
     private float speedBonus = 5;
     private bool timerOn = false;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Inventory : MonoBehaviour
 {
-
+    [SerializeField] Sprite defaultSprite;
     private PowerUp[] powerUps = { null, null, null, null };
     private int nofPowerUps = 0;
 
@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour
                 StartCoroutine(powerUps[button].Use(player));
                 powerUps[button] = null;
                 nofPowerUps -= 1;
+                GUIManager.Instance.GetInventoryPanel(GetComponent<Player>().playerID).SetInventoryImage(button, defaultSprite);
             }
         }
     }
