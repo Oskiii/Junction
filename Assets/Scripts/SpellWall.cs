@@ -2,11 +2,13 @@
 using System.Collections;
 using System;
 
-public class SoulSwap : MonoBehaviour, PowerUp
+public class SpellWall : MonoBehaviour, PowerUp
 {
 
     [SerializeField] Sprite sprite;
-    private float duration = 3;
+    [SerializeField] GameObject wall;
+    private float duration = 5;
+    private float distance = 500;
 
     public GameObject getGameObject()
     {
@@ -26,8 +28,8 @@ public class SoulSwap : MonoBehaviour, PowerUp
 
     public IEnumerator Use(Player player)
     {
-        
+        UnityEngine.Object obj = Instantiate(wall, player.transform.position + player.transform.forward * distance, player.transform.rotation);
         yield return new WaitForSeconds(duration);
-        
+        Destroy(obj);
     }
 }

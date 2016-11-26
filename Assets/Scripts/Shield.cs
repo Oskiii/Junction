@@ -7,7 +7,6 @@ public class Shield : MonoBehaviour, PowerUp
 
     [SerializeField]
     Sprite sprite;
-    private int amount = 1;
     private float duration = 2;
 
     public void PickUp(Player player)
