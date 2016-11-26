@@ -18,12 +18,16 @@ public class Ball : MonoBehaviour, IMoveable {
 
 	public void Move ()
 	{
-		rb.velocity = (currentTarget.transform.position - transform.position).normalized * moveSpeed;
-	}
+        Vector2 moveDir = (currentTarget.transform.position - transform.position).normalized;
 
-	#endregion
+        rb.velocity = moveDir * moveSpeed;
+        if (moveDir != Vector2.zero)
+            transform.up = -moveDir;
+    }
 
-	void SelectTarget(){
+    #endregion
+
+    void SelectTarget(){
 		
 		currentTarget = PlayerManager.Instance.PlayerObjects [Random.Range (0, PlayerManager.Instance.PlayerObjects.Count-1)].gameObject;
 		ShouldMove = true;
