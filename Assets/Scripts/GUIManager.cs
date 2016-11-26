@@ -27,9 +27,9 @@ public class GUIManager : MonoBehaviour{
 
 	public void CreatePlayerUI(){
 		GameObject ob = (GameObject)Instantiate (InventoryObject);
-		ob.transform.SetParent (InventoryParent, false);
+		ob.transform.SetParent (InventoryParent.transform, false);
 		ob = (GameObject)Instantiate (ScoreObject);
-		ob.transform.SetParent (ScoreParent, false);
+		ob.transform.SetParent (ScoreParent.transform, false);
 	}
 
     void SetInventoryImage(int slot, Sprite spr){
