@@ -71,9 +71,9 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 			anim.SetBool ("Walk", true);
 
 			if (rb.velocity.x > 0 && !facingRight) {
-				FlipSprite ();
+				//FlipSprite ();
 			} else if (rb.velocity.x < 0 && facingRight) {
-				FlipSprite ();
+				//FlipSprite ();
 			}
 
 		} else {
@@ -85,17 +85,6 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 		
 	}
     #endregion
-
-	void FlipSprite(){
-
-		Character.transform.localScale = new Vector2(-Character.transform.localScale.x, Character.transform.localScale.y);
-
-		if (facingRight) {
-			facingRight = false;
-		} else {
-			facingRight = true;
-		}
-	}
 
     public void Interact()
     {
