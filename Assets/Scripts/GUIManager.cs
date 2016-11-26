@@ -13,6 +13,8 @@ public class GUIManager : MonoBehaviour{
 	[SerializeField] private GameObject ScoreParent;
 	private List<HealthScorePanelFunctions> healthScores;
     public static GUIManager Instance;
+	[SerializeField] private Transform healthBarParent;
+	[SerializeField] private GameObject healthbarObject;
 
     void Awake()
     {
@@ -25,6 +27,14 @@ public class GUIManager : MonoBehaviour{
 		for(int i = 0; i < PlayerManager.Instance.PlayerAmount; i++){
 			CreatePlayerUI ();
 		}
+	}
+
+	public Slider SpawnHealthBar(Transform target){
+		GameObject obj = (GameObject)Instantiate (healthbarObject);
+		obj.GetComponent<UIFollowGameobject> ().SetTarget (target);
+		obj.transform.SetParent (healthBarParent, false);
+		obj.transform.position = target.position;
+		return obj.GetComponent<Slider>();
 	}
 
 	public InventoryPanelFunctions GetInventoryPanel(int playerID){

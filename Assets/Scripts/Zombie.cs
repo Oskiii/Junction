@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
@@ -16,6 +17,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     private Rigidbody2D rb;
     private BoxCollider2D box2d;
 	private Animator anim;
+	private Slider healthbar;
 
     public void Resurrection(Vector2 direction)
     {
@@ -27,6 +29,8 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 			StartCoroutine(Live());
 			anim.SetTrigger ("Resurrect");
 			anim.SetBool ("Move", true);
+			healthbar.gameObject.SetActive (true);
+			SetHealthBar (DefaultHealth);
 		}
     }
 
@@ -43,35 +47,33 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         ShouldMove = false;
 		anim.SetBool ("Move", false);
 		anim.SetTrigger ("Die");
+		healthbar.gameObject.SetActive (false);
+		SetHealthBar (0);
     }
 
     public void Move()
     {
-        rb.velocity = (moveDir * MoveSpeed);
-
+		rb.velocity = (moveDir * MoveSpeed);
 		anim.SetBool ("Move", true);
 
-        //if (moveDir != Vector2.zero)
-            //ZombieObject.transform.up = moveDir;
     }
 
     public void TakeDamage(int amount)
     
     {
+		health -= amount;
+		SetHealthBar (health);
         if(health <= 0)
         {
             box2d.enabled = false;
-        }
-        else if(health > 0)
-        {
-            health -= amount;
-            print(health);
-            if(health <= 0)
-            {
-                Die();
-            }
+			Die();
         }
     }
+
+	void SetHealthBar(int value){
+		healthbar.GetComponent<Slider> ().value = value;
+		print (healthbar.GetComponent<Slider> ().value);
+	}
 
     // Use this for initialization
     void Start () {
@@ -81,6 +83,10 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         box2d.enabled = false;
         ShouldMove = false;
 		anim = GetComponent<Animator> ();
+		healthbar = GUIManager.Instance.SpawnHealthBar(transform);
+		healthbar.maxValue = DefaultHealth;
+		SetHealthBar (health);
+		healthbar.gameObject.SetActive (false);
 	}
 
     void Update()
