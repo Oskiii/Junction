@@ -17,4 +17,8 @@ public class Shield : MonoBehaviour, PowerUp {
 
     }
 
+    public GameObject getGameObject()
+    {
+        return gameObject;
+    }
 }
