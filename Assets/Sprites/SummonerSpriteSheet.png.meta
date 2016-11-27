@@ -1,13 +1,59 @@
 fileFormatVersion: 2
 guid: 4080c044587159d4f9c57485852612da
-timeCreated: 1480207104
+timeCreated: 1480209659
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: SummonerSpriteSheet_0
+    21300002: SummonerSpriteSheet_1
+    21300004: SummonerSpriteSheet_2
+    21300006: SummonerSpriteSheet_3
+    21300008: SummonerSpriteSheet_4
+    21300010: SummonerSpriteSheet_5
+    21300012: SummonerSpriteSheet_6
+    21300014: SummonerSpriteSheet_7
+    21300016: SummonerSpriteSheet_8
+    21300018: SummonerSpriteSheet_9
+    21300020: SummonerSpriteSheet_10
+    21300022: SummonerSpriteSheet_11
+    21300024: SummonerSpriteSheet_12
+    21300026: SummonerSpriteSheet_13
+    21300028: SummonerSpriteSheet_14
+    21300030: SummonerSpriteSheet_15
+    21300032: SummonerSpriteSheet_16
+    21300034: SummonerSpriteSheet_17
+    21300036: SummonerSpriteSheet_18
+    21300038: SummonerSpriteSheet_19
+    21300040: SummonerSpriteSheet_20
+    21300042: SummonerSpriteSheet_21
+    21300044: SummonerSpriteSheet_22
+    21300046: SummonerSpriteSheet_23
+    21300048: SummonerSpriteSheet_24
+    21300050: SummonerSpriteSheet_25
+    21300052: SummonerSpriteSheet_26
+    21300054: SummonerSpriteSheet_27
+    21300056: SummonerSpriteSheet_28
+    21300058: SummonerSpriteSheet_29
+    21300060: SummonerSpriteSheet_30
+    21300062: SummonerSpriteSheet_31
+    21300064: SummonerSpriteSheet_32
+    21300066: SummonerSpriteSheet_33
+    21300068: SummonerSpriteSheet_34
+    21300070: SummonerSpriteSheet_35
+    21300072: SummonerSpriteSheet_36
+    21300074: SummonerSpriteSheet_37
+    21300076: SummonerSpriteSheet_38
+    21300078: SummonerSpriteSheet_39
+    21300080: SummonerSpriteSheet_40
+    21300082: SummonerSpriteSheet_41
+    21300084: SummonerSpriteSheet_42
+    21300086: SummonerSpriteSheet_43
+    21300088: SummonerSpriteSheet_44
+    21300090: SummonerSpriteSheet_45
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -26,11 +72,11 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 0
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,20 +84,618 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 200
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 200
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 200
+        width: 19
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 200
+        width: 16
+        height: 13
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 200
+        width: 23
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 200
+        width: 31
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 200
+        width: 38
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 175
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 175
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 175
+        width: 19
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 175
+        width: 23
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 175
+        width: 16
+        height: 13
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 175
+        width: 31
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 175
+        width: 38
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 150
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 150
+        width: 19
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 122
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 122
+        width: 19
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 94
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 94
+        width: 18
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 94
+        width: 18
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 94
+        width: 17
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 94
+        width: 18
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 94
+        width: 18
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 66
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 66
+        width: 18
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 66
+        width: 18
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 66
+        width: 17
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 66
+        width: 18
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 66
+        width: 18
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 38
+        width: 20
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 38
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 38
+        width: 18
+        height: 23
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 38
+        width: 18
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 38
+        width: 19
+        height: 23
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 38
+        width: 21
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 38
+        width: 22
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 38
+        width: 23
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 6
+        width: 20
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_39
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 6
+        width: 19
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_40
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 6
+        width: 18
+        height: 23
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_41
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 6
+        width: 18
+        height: 25
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_42
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 6
+        width: 19
+        height: 23
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_43
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 6
+        width: 21
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 6
+        width: 22
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SummonerSpriteSheet_45
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 6
+        width: 23
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
