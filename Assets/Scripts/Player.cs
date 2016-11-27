@@ -83,20 +83,21 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	public void Move ()
 	{
 		
-		moveDir = new Vector2 (Input.GetAxisRaw ("P1MoveHorizontal"), Input.GetAxisRaw ("P1MoveVertical")).normalized;
+		moveDir = new Vector2 (Input.GetAxisRaw ("P1MoveHorizontalKeyboard"), Input.GetAxisRaw ("P1MoveVerticalKeyboard")).normalized;
 		rb.velocity = (moveDir * moveSpeed);
 
 		if (rb.velocity != Vector2.zero) {
 			SetMoveAnim ();
 
-			if (rb.velocity.x > 0 && !facingRight) {
+			if (moveDir.x > 0 && !facingRight) {
 				anim.SetBool ("FaceRight", true);
-			} else if (rb.velocity.x < 0 && facingRight) {
+			} else if (moveDir.x < 0 && facingRight) {
 				anim.SetBool ("FaceRight", false);
 			}
 
 		} else {
 			SetMoveAnimIdle ();
+			anim.SetBool ("FaceRight", false);
 		}
 		
 	}

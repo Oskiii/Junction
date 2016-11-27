@@ -30,6 +30,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 			health = DefaultHealth;
 
 			anim.SetTrigger ("Resurrect");
+			anim.SetInteger ("ResDir", Mathf.FloorToInt (Mathf.Sign (direction.x)));
 		}
     }
 
