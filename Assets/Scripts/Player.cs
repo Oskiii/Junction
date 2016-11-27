@@ -114,13 +114,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 		}
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.GetComponent<PowerUp>() != null)
-        {
-            other.gameObject.GetComponent<PowerUp>().PickUp(this);
-        }
-    }
+    
 
     public void Interact()
     {
@@ -132,9 +126,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
             {
                 call.GetComponent<Zombie>().Resurrection((call.transform.position - Character.transform.position).normalized);
             }
-            if(call.GetComponent<PowerUp>() != null) {
-                call.GetComponent<PowerUp>().PickUp(this);
-            }
+
         }
 
         
