@@ -11,7 +11,6 @@ public class Indicator : MonoBehaviour {
 	}
 
 	public void SetDirection(Vector2 dir){
-		print ("setting arrow dir");
 		if(dir != Vector2.zero)
 			transform.up = dir;
 	}

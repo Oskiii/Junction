@@ -40,7 +40,6 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.V)) { GetComponent<Inventory>().Use(3, this); }
 
 		aimDirection = new Vector2 (Input.GetAxis ("P1AimHorizontal"), Input.GetAxis ("P1AimVertical"));
-		print (aimDirection);
         aimArrow.SetDirection(aimDirection);
     }
 
@@ -63,6 +62,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     public void Die()
     {
         lives -= 1;
+		anim.SetTrigger ("Death");
         if (lives <= 0)
         {
             GameManager.Instance.GameOver();
@@ -87,23 +87,28 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 		rb.velocity = (moveDir * moveSpeed);
 
 		if (rb.velocity != Vector2.zero) {
-			anim.SetBool ("Walk", true);
+			SetMoveAnim ();
 
 			if (rb.velocity.x > 0 && !facingRight) {
-				//FlipSprite ();
+				anim.SetBool ("FaceRight", true);
 			} else if (rb.velocity.x < 0 && facingRight) {
-				//FlipSprite ();
+				anim.SetBool ("FaceRight", false);
 			}
 
 		} else {
-			anim.SetBool ("Walk", false);
+			SetMoveAnimIdle ();
 		}
-
-		/*if(moveDir != Vector2.zero)
-			Character.transform.up = moveDir;*/
 		
 	}
     #endregion
+
+	void SetMoveAnim(){
+		anim.SetInteger ("Move", Mathf.FloorToInt(Mathf.Sign(moveDir.x)));
+	}
+
+	void SetMoveAnimIdle(){
+		anim.SetInteger ("Move", 0);
+	}
 
 	void FlipSprite(){
 
@@ -127,6 +132,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
             if(call.GetComponent<Zombie>() != null)
             {
                 call.GetComponent<Zombie>().Resurrection((call.transform.position - Character.transform.position).normalized);
+				anim.SetTrigger ("Resurrection");
             }
 
         }
