@@ -179,7 +179,6 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 			GUIManager.Instance.ScreenFlash (0.08f);
 
 			HealthScorePanelFunctions h = GUIManager.Instance.GetHealthScorePanel (playerID);
-			h.AddHealth (-1);
 
             if(health <= 0)
             {

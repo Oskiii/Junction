@@ -68,9 +68,9 @@ public class GUIManager : MonoBehaviour{
 		GameObject ob = (GameObject)Instantiate (InventoryObject);
 		ob.transform.SetParent (InventoryParent.transform, false);
 		inventories.Add(ob.GetComponent<InventoryPanelFunctions>());
-		ob = (GameObject)Instantiate (ScoreObject);
-		ob.transform.SetParent (ScoreParent.transform, false);
-		healthScores.Add(ob.GetComponent<HealthScorePanelFunctions>());
+		//ob = (GameObject)Instantiate (ScoreObject);
+		//ob.transform.SetParent (ScoreParent.transform, false);
+		//healthScores.Add(ob.GetComponent<HealthScorePanelFunctions>());
 	}
 
     public void ShowGameOverScreen()
