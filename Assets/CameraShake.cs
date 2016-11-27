@@ -33,14 +33,21 @@ public class CameraShake : MonoBehaviour {
 		foreach (GameObject player in players){
 			playerPos += player.transform.position;
 		}
-		playerPos /= players.Length;
+		if (players.Length != 0) {
+			playerPos /= players.Length;
+		} else {
+			playerPos = new Vector3(0, 0, Camera.main.transform.position.z);
+		}
 
-		Vector3 newpos = new Vector3(playerPos.x * horizontalMoveFactor, playerPos.y * verticalMoveFactor, Camera.main.transform.position.z);
+		Vector3 newpos = new Vector3(playerPos.x * horizontalMoveFactor, playerPos.y * verticalMoveFactor, -10);
 
 		startingCameraPos = newpos;
+		print (newpos);
 	
 		if (shake > 0) {
-			Camera.main.transform.localPosition = Random.insideUnitSphere * shakeIntensity.Evaluate(shake/duration);
+			Vector3 randDir = Random.insideUnitSphere;
+			randDir = new Vector3 (randDir.x, randDir.y, 0);
+			Camera.main.transform.localPosition = randDir * shakeIntensity.Evaluate(shake/duration);
 			Camera.main.transform.localPosition += startingCameraPos;
 			shake -= Time.deltaTime * decreaseFactor;
 
