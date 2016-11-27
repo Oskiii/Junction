@@ -8,10 +8,10 @@ public class HealthScorePanelFunctions : MonoBehaviour {
 	[SerializeField] private Text scoreText;
 
 	public void AddHealth(int h){
-		healthText.text += h.ToString ();
+		healthText.text = h.ToString ();
 	}
 
 	public void AddScore(int s){
-		scoreText.text += s.ToString ();
+		scoreText.text = s.ToString ();
 	}
 }

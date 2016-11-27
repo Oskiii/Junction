@@ -178,6 +178,9 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 			CameraShake.Instance.Shake (0.3f, 0.4f);
 			GUIManager.Instance.ScreenFlash (0.08f);
 
+			HealthScorePanelFunctions h = GUIManager.Instance.GetHealthScorePanel (playerID);
+			h.AddHealth (-1);
+
             if(health <= 0)
             {
                 Die();
