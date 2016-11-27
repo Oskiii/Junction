@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+        GetComponent<AudioSource>().Play();
     }
 
     public void Use(int button, Player player)

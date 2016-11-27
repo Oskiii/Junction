@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
     public void SpawnZombie()
     {
-        GameObject zomb = (GameObject)Instantiate(ZombieObject, new Vector2 (Random.Range(-4, 4), Random.Range(-2,2)), Quaternion.identity);
+        GameObject zomb = (GameObject)Instantiate(ZombieObject, new Vector2 (Random.Range(-3, 3), Random.Range(-1,1)), Quaternion.identity);
     }
 	void Start () {
         Time.timeScale = 1;
