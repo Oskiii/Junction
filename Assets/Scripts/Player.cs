@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	public Vector2 aimDirection;
     private AudioSource[] sounds;
     private float stepTimer;
+    private float interactCD = 3;
 
     void Start(){
 		rb = GetComponent<Rigidbody2D> ();
@@ -31,7 +32,8 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     }
 
 	void Update(){
-		Move ();
+        interactCD -= Time.deltaTime;
+        Move ();
 		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Interact();
@@ -137,21 +139,26 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
     public void Interact()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(rb.position, (float)0.5);
-        for(int i = 0; i < colliders.Length; i++)
+        print(interactCD);
+        if (interactCD < 0)
         {
-            Collider2D call = colliders[i];
 
-            if(call.GetComponent<Zombie>() != null)
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(rb.position, (float)0.5);
+            for (int i = 0; i < colliders.Length; i++)
             {
-                call.GetComponent<Zombie>().Resurrection((/*call.transform.position - Character.transform.position*/aimDirection).normalized);
-				anim.SetTrigger ("Resurrection");
-                sounds[Random.Range(6, 8)].Play();
+
+                Collider2D call = colliders[i];
+
+                if (call.GetComponent<Zombie>() != null)
+                {
+                    call.GetComponent<Zombie>().Resurrection((/*call.transform.position - Character.transform.position*/aimDirection).normalized);
+                    anim.SetTrigger("Resurrection");
+                    sounds[Random.Range(6, 8)].Play();
+                    interactCD = 3;
+                }
+
             }
-
         }
-
-        
     }
 
     public Indicator getIndicator()
