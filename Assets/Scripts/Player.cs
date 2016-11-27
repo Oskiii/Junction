@@ -132,6 +132,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         for(int i = 0; i < colliders.Length; i++)
         {
             Collider2D call = colliders[i];
+
             if(call.GetComponent<Zombie>() != null)
             {
                 call.GetComponent<Zombie>().Resurrection((/*call.transform.position - Character.transform.position*/aimDirection).normalized);

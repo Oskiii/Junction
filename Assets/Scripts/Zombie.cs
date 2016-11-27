@@ -13,13 +13,14 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 	[SerializeField] private float lifeTime;
 
     [SerializeField] private int DefaultHealth = 2;
-    private int health;
+    public int health;
     private Vector2 moveDir;
     [SerializeField] private GameObject ZombieObject;
     private Rigidbody2D rb;
     private BoxCollider2D box2d;
 	private Animator anim;
 	private Slider healthbar;
+	private bool alive = false;
 	[SerializeField] private AnimationClip zombieDieAnim;
 
     public void Resurrection(Vector2 direction)
@@ -28,7 +29,10 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 			box2d.enabled = true;
 			moveDir = direction;
 			health = DefaultHealth;
-
+			anim.SetInteger ("Health", health);
+			lifeTime = 3f;
+			alive = true;
+			print ("resurrect");
 			anim.SetTrigger ("Resurrect");
 			anim.SetInteger ("ResDir", Mathf.FloorToInt (Mathf.Sign (direction.x)));
 		}
@@ -45,8 +49,10 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 		healthbar.gameObject.SetActive (true);
 		SetHealthBar (DefaultHealth);
 		print ("lifetime: " + lifeTime);
+
 		for (float t = 1.0f; t > 0.0f; t -= Time.deltaTime / lifeTime)
 		{
+			print ("loop");
 			MoveSpeed = Mathf.Lerp(0.0f, 1.0f, t);
 			yield return null;
 		}
@@ -59,9 +65,11 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         rb.velocity = Vector2.zero;
         health = 0;
         ShouldMove = false;
+
 		anim.SetInteger ("Move", 0);
-		anim.SetTrigger ("Die");
+		anim.SetInteger ("Health", health);
 		healthbar.gameObject.SetActive (false);
+		alive = false;
 		SetHealthBar (0);
     }
 
@@ -81,7 +89,8 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     {
 		health -= amount;
 		SetHealthBar (health);
-        if(health <= 0)
+		anim.SetInteger ("Health", health);
+		if(health <= 0 && alive)
         {
             box2d.enabled = false;
 			Die();
@@ -94,14 +103,15 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
     // Use this for initialization
     void Start () {
-        health = 0;
         rb = GetComponent<Rigidbody2D>();
+		health = 0;
         box2d = ZombieObject.GetComponent<BoxCollider2D>();
         box2d.enabled = false;
         ShouldMove = false;
 		anim = GetComponent<Animator> ();
 		healthbar = GUIManager.Instance.SpawnHealthBar(transform);
 		healthbar.maxValue = DefaultHealth;
+		anim.SetInteger ("Health", health);
 		SetHealthBar (health);
 		healthbar.gameObject.SetActive (false);
 	}
