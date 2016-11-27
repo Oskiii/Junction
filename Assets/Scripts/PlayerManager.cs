@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour {
 	void SpawnPlayers () {
 		for (int i = 0; i < PlayerAmount; i++) {
 			GameObject player = Instantiate (playerObject);
+			player.transform.position = Camera.main.ScreenToWorldPoint (new Vector2(Screen.width / 2, Screen.height / 2));
 			PlayerObjects.Add (player.GetComponent<Player>());
 			player.GetComponent<Player> ().playerID = i;
 		}

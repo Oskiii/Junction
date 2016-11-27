@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour, IMoveable {
 	public float moveSpeed;
     public int damage = 1;
 	bool ShouldMove = true;
+	Vector2 moveDir;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
@@ -18,9 +19,9 @@ public class Ball : MonoBehaviour, IMoveable {
 
 	public void Move ()
 	{
-        Vector2 moveDir = (currentTarget.transform.position - transform.position).normalized;
+        moveDir = (currentTarget.transform.position - transform.position).normalized;
         float angle = (Mathf.Atan2(moveDir.y, moveDir.x) * 180/Mathf.PI + 270) % 360;
-        rb.velocity = moveDir * moveSpeed;
+        
         if (22.5 > angle || angle > 337.5)
         {
             moveDir = new Vector2(0, 1);
@@ -54,6 +55,7 @@ public class Ball : MonoBehaviour, IMoveable {
             moveDir = new Vector2(1, 1).normalized;
         }
         transform.up = -moveDir;
+		rb.velocity = moveDir * moveSpeed;
     }
 
     #endregion
@@ -70,13 +72,15 @@ public class Ball : MonoBehaviour, IMoveable {
 		}
     
 	}
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.tag == "Player")
         {
-            
-            Destroy(gameObject);
-            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+			Player p = collision.gameObject.GetComponent<Player> ();
+            p.TakeDamage(damage);
+			p.Shove (moveDir * 20);
+			Destroy(gameObject);
         }
         if (collision.collider.tag == "Zombie")
         {
@@ -85,5 +89,11 @@ public class Ball : MonoBehaviour, IMoveable {
             collision.gameObject.GetComponent<Zombie>().TakeDamage(damage);
 			//GUIManager.Instance.GetHealthScorePanel (0).AddScore (1);
         }
+		if (collision.collider.tag == "Ball") {
+			if (collision.collider.transform.position.x > transform.position.x) {
+				Destroy (gameObject);
+			}
+			moveSpeed *= Mathf.Max(moveSpeed, collision.collider.GetComponent<Ball>().moveSpeed) * 1.5f;
+		}
     }
 }
