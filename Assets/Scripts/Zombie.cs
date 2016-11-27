@@ -20,6 +20,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     private BoxCollider2D box2d;
 	private Animator anim;
 	private Slider healthbar;
+	[SerializeField] private AnimationClip zombieDieAnim;
 
     public void Resurrection(Vector2 direction)
     {
@@ -27,17 +28,22 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 			box2d.enabled = true;
 			moveDir = direction;
 			health = DefaultHealth;
-			MoveSpeed = DefaultMoveSpeed;
-			ShouldMove = true;
-			StartCoroutine(Live());
+
 			anim.SetTrigger ("Resurrect");
-			anim.SetBool ("Move", true);
-			healthbar.gameObject.SetActive (true);
-			SetHealthBar (DefaultHealth);
 		}
     }
 
+	public void StartLiving(){
+		StartCoroutine (Live ());
+	}
+
 	IEnumerator Live(){
+		SetMoveAnim ();
+		MoveSpeed = DefaultMoveSpeed;
+		ShouldMove = true;
+		healthbar.gameObject.SetActive (true);
+		SetHealthBar (DefaultHealth);
+		print ("lifetime: " + lifeTime);
 		for (float t = 1.0f; t > 0.0f; t -= Time.deltaTime / lifeTime)
 		{
 			MoveSpeed = Mathf.Lerp(0.0f, 1.0f, t);
@@ -52,7 +58,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
         rb.velocity = Vector2.zero;
         health = 0;
         ShouldMove = false;
-		anim.SetBool ("Move", false);
+		anim.SetInteger ("Move", 0);
 		anim.SetTrigger ("Die");
 		healthbar.gameObject.SetActive (false);
 		SetHealthBar (0);
@@ -61,9 +67,13 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     public void Move()
     {
 		rb.velocity = (moveDir * MoveSpeed);
-		anim.SetBool ("Move", true);
+		SetMoveAnim ();
 
     }
+
+	void SetMoveAnim(){
+		anim.SetInteger ("Move", Mathf.FloorToInt(Mathf.Sign(moveDir.x)));
+	}
 
     public void TakeDamage(int amount)
     
@@ -79,7 +89,6 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
 	void SetHealthBar(int value){
 		healthbar.GetComponent<Slider> ().value = value;
-		print (healthbar.GetComponent<Slider> ().value);
 	}
 
     // Use this for initialization
