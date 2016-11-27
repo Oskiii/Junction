@@ -29,7 +29,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 	void Update(){
 		Move ();
-        if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Interact();
         }
@@ -39,8 +39,10 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.C)) { GetComponent<Inventory>().Use(2, this); }
         if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.V)) { GetComponent<Inventory>().Use(3, this); }
 
-		aimDirection = new Vector2 (Input.GetAxis ("P1AimHorizontal"), Input.GetAxis ("P1AimVertical"));
-        aimArrow.SetDirection(aimDirection);
+		/*aimDirection = new Vector2 (Input.GetAxis ("P1AimHorizontalKeyboard"), Input.GetAxis ("P1AimVerticalKeyboard"));*/
+		aimDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+
+		aimArrow.SetDirection(aimDirection);
     }
 
 	public void Shove(Vector2 dir){
@@ -132,7 +134,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
             Collider2D call = colliders[i];
             if(call.GetComponent<Zombie>() != null)
             {
-                call.GetComponent<Zombie>().Resurrection((call.transform.position - Character.transform.position).normalized);
+                call.GetComponent<Zombie>().Resurrection((/*call.transform.position - Character.transform.position*/aimDirection).normalized);
 				anim.SetTrigger ("Resurrection");
             }
 
