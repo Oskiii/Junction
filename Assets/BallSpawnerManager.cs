@@ -23,6 +23,8 @@ public class BallSpawnerManager : MonoBehaviour {
 				SpawnSpawner ();
 				lastSpawn = Time.time;
 			}
+
+			spawnDelay *= 0.9999f; 
 		}
 
 	}
