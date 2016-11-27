@@ -150,6 +150,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (!invurnerable)
         {
             health -= amount;
+			CameraShake.Instance.Shake (0.5f);
             if(health <= 0)
             {
                 Die();
