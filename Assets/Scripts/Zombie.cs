@@ -52,7 +52,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
 		for (float t = 1.0f; t > 0.0f; t -= Time.deltaTime / lifeTime)
 		{
-			print ("loop");
+			//print ("loop");
 			MoveSpeed = Mathf.Lerp(0.0f, 1.0f, t);
 			yield return null;
 		}
@@ -60,7 +60,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 	}
 
     public void Die() {
-        print("died");
+        //print("died");
         box2d.enabled = false;
         rb.velocity = Vector2.zero;
         health = 0;
