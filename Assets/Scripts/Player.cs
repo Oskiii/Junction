@@ -40,11 +40,10 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
 		aimDirection = new Vector2 (Input.GetAxisRaw ("RightH"), Input.GetAxisRaw ("RightV"));
         aimArrow.SetDirection(aimDirection);
-        //tähän vaan axisien mukaan aimArrow.SetDirection(direction); (se pitää kans asetella jalkoihin jossain)
     }
 
 	public void Shove(Vector2 dir){
-		print ("boop");
+		print ("shoved player back");
 		rb.AddForce(dir*15);
 	}
 
