@@ -43,6 +43,11 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         //tähän vaan axisien mukaan aimArrow.SetDirection(direction); (se pitää kans asetella jalkoihin jossain)
     }
 
+	public void Shove(Vector2 dir){
+		print ("boop");
+		rb.AddForce(dir*15);
+	}
+
     public void AddHealth(int amount)
     {
         health += amount;
@@ -150,7 +155,9 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (!invurnerable)
         {
             health -= amount;
-			CameraShake.Instance.Shake (0.5f);
+			CameraShake.Instance.Shake (0.3f, 0.4f);
+			GUIManager.Instance.ScreenFlash (0.08f);
+
             if(health <= 0)
             {
                 Die();
