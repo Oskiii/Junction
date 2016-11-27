@@ -146,6 +146,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
             {
                 call.GetComponent<Zombie>().Resurrection((/*call.transform.position - Character.transform.position*/aimDirection).normalized);
 				anim.SetTrigger ("Resurrection");
+                sounds[Random.Range(6, 8)].Play();
             }
 
         }
