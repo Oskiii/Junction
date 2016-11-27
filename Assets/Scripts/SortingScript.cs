@@ -4,8 +4,8 @@
 public class SortingScript : MonoBehaviour
 {
 	public float offset = 0f;
-	private float yTop = 6f;
-	private float yBottom = -6f;
+	private float yTop = 5f;
+	private float yBottom = -5f;
 
     private float zTop = 0;
     private float zBottom = -3;
