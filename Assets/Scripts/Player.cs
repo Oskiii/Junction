@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 	private bool facingRight = false;
     [SerializeField] private GameObject arrowObject;
 	private Indicator aimArrow;
+	public Vector2 aimDirection;
 
 	void Start(){
 		rb = GetComponent<Rigidbody2D> ();
@@ -37,7 +38,9 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.C)) { GetComponent<Inventory>().Use(2, this); }
         if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.V)) { GetComponent<Inventory>().Use(3, this); }
 
-		//tähän vaan axisien mukaan aimArrow.SetDirection(direction); (se pitää kans asetella jalkoihin jossain)
+		aimDirection = new Vector2 (Input.GetAxisRaw ("RightH"), Input.GetAxisRaw ("RightV"));
+        aimArrow.SetDirection(aimDirection);
+        //tähän vaan axisien mukaan aimArrow.SetDirection(direction); (se pitää kans asetella jalkoihin jossain)
     }
 
     public void AddHealth(int amount)
@@ -132,6 +135,11 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 
         
     }
+
+    public Indicator getIndicator()
+    {
+        return aimArrow;
+    }
 	
 
 
@@ -142,6 +150,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (!invurnerable)
         {
             health -= amount;
+			CameraShake.Instance.Shake (0.5f);
             if(health <= 0)
             {
                 Die();

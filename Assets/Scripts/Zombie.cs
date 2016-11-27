@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 
     public string Name;
-    public float MoveSpeed;
+	[SerializeField] private float DefaultMoveSpeed;
+	private float MoveSpeed;
+
     public bool ShouldMove;
 	[SerializeField] private float lifeTime;
 
@@ -25,6 +27,7 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
 			box2d.enabled = true;
 			moveDir = direction;
 			health = DefaultHealth;
+			MoveSpeed = DefaultMoveSpeed;
 			ShouldMove = true;
 			StartCoroutine(Live());
 			anim.SetTrigger ("Resurrect");
@@ -35,7 +38,11 @@ public class Zombie : MonoBehaviour, IDamageable, IMoveable {
     }
 
 	IEnumerator Live(){
-		yield return new WaitForSeconds (lifeTime);
+		for (float t = 1.0f; t > 0.0f; t -= Time.deltaTime / lifeTime)
+		{
+			MoveSpeed = Mathf.Lerp(0.0f, 1.0f, t);
+			yield return null;
+		}
 		Die ();
 	}
 

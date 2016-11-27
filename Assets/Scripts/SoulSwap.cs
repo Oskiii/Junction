@@ -26,7 +26,7 @@ public class SoulSwap : MonoBehaviour, PowerUp
     public IEnumerator Use(Player player)
     {
         Instantiate(obj, player.transform.position, player.transform.rotation);
-        //obj.shoot(INDICATOR DIR);
+        obj.shoot(player.getIndicator().getDir());
         yield return new WaitForSeconds(0);
     }
 }
