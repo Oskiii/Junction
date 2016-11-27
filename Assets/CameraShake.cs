@@ -42,7 +42,7 @@ public class CameraShake : MonoBehaviour {
 		Vector3 newpos = new Vector3(playerPos.x * horizontalMoveFactor, playerPos.y * verticalMoveFactor, -10);
 
 		startingCameraPos = newpos;
-		print (newpos);
+		//print (newpos);
 	
 		if (shake > 0) {
 			Vector3 randDir = Random.insideUnitSphere;
