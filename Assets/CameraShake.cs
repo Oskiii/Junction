@@ -3,6 +3,9 @@ using System.Collections;
 
 public class CameraShake : MonoBehaviour {
 
+	public float horizontalMoveFactor = 0.5f;
+	public float verticalMoveFactor = 0.25f;
+
 	float shake = 0f;
 	float duration;
 	[SerializeField] float shakeAmount = 0.7f;
@@ -10,6 +13,9 @@ public class CameraShake : MonoBehaviour {
 	Vector3 startingCameraPos;
 	public static CameraShake Instance;
 	[SerializeField] private AnimationCurve shakeIntensity;
+
+
+
 
 	void Awake(){
 		Instance = this;
@@ -19,9 +25,23 @@ public class CameraShake : MonoBehaviour {
 		startingCameraPos = Camera.main.transform.position;
 	}
 
-	void Update() {
+	void Update()
+	{
+		Vector3 playerPos = new Vector3(0, 0, Camera.main.transform.position.z);
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+		foreach (GameObject player in players){
+			playerPos += player.transform.position;
+		}
+		playerPos /= players.Length;
+
+		Vector3 newpos = new Vector3(playerPos.x * horizontalMoveFactor, playerPos.y * verticalMoveFactor, Camera.main.transform.position.z);
+
+		startingCameraPos = newpos;
+	
 		if (shake > 0) {
 			Camera.main.transform.localPosition = Random.insideUnitSphere * shakeIntensity.Evaluate(shake/duration);
+			Camera.main.transform.localPosition += startingCameraPos;
 			shake -= Time.deltaTime * decreaseFactor;
 
 		} else {
@@ -34,6 +54,6 @@ public class CameraShake : MonoBehaviour {
 		duration = dur;
 		shake = duration;
 		shakeAmount = amount;
-		startingCameraPos = Camera.main.transform.position;
+		//startingCameraPos = Camera.main.transform.position;
 	}
 }
