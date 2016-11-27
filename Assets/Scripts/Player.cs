@@ -175,7 +175,7 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
         if (!invurnerable)
         {
             health -= amount;
-			CameraShake.Instance.Shake (0.3f, 0.4f);
+			CameraShake.Instance.Shake (0.3f, 0.2f);
 			GUIManager.Instance.ScreenFlash (0.08f);
 
 			HealthScorePanelFunctions h = GUIManager.Instance.GetHealthScorePanel (playerID);

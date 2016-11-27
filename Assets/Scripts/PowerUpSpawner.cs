@@ -17,7 +17,6 @@ public class PowerUpSpawner : MonoBehaviour {
 
     void Update()
     {
-        print("PU: "+(Time.time - lastSpawn));
         if ((Time.time - lastSpawn) > SpawnDelay)
         {
             SpawnPowerUp();
