@@ -7,8 +7,8 @@ public class PowerUpSpawner : MonoBehaviour {
 
     [SerializeField]
     private List<GameObject> PowerUps;
-    public float SpawnDelay = 20;
-    private float lastSpawn;
+    public float SpawnDelay = 3;
+    private float lastSpawn = 0;
 
     void SpawnPowerUp()
     {
@@ -17,6 +17,7 @@ public class PowerUpSpawner : MonoBehaviour {
 
     void Update()
     {
+        print("PU: "+(Time.time - lastSpawn));
         if ((Time.time - lastSpawn) > SpawnDelay)
         {
             SpawnPowerUp();
