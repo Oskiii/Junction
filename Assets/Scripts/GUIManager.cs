@@ -16,6 +16,7 @@ public class GUIManager : MonoBehaviour{
 	[SerializeField] private Transform healthBarParent;
 	[SerializeField] private GameObject healthbarObject;
 	[SerializeField] private Image flashScreenObject;
+	private Color flashScreenStartColor;
 
     void Awake()
     {
@@ -28,6 +29,7 @@ public class GUIManager : MonoBehaviour{
 		for(int i = 0; i < PlayerManager.Instance.PlayerAmount; i++){
 			CreatePlayerUI ();
 		}
+		flashScreenStartColor = flashScreenObject.color;
 	}
 
 	public void ScreenFlash(float duration){
@@ -35,7 +37,6 @@ public class GUIManager : MonoBehaviour{
 	}
 
 	private IEnumerator Flash(float duration, float startingAlpha = 0.8f){
-		Color startColor = flashScreenObject.color;
 		for (float t = startingAlpha; t > 0.0f; t -= Time.deltaTime / duration)
 		{
 			float a = Mathf.Lerp(0.0f, 1.0f, t);
@@ -43,7 +44,7 @@ public class GUIManager : MonoBehaviour{
 			flashScreenObject.color = new Color(old.r, old.g, old.b, a);
 			yield return null;
 		}
-		flashScreenObject.color = startColor;
+		flashScreenObject.color = flashScreenStartColor;
 	}
 
 	public Slider SpawnHealthBar(Transform target){
