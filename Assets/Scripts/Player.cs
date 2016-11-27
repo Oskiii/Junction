@@ -17,15 +17,18 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
     [SerializeField] private GameObject arrowObject;
 	private Indicator aimArrow;
 	public Vector2 aimDirection;
+    private AudioSource[] sounds;
+    private float stepTimer;
 
-	void Start(){
+    void Start(){
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 
 		GameObject g = (GameObject) Instantiate(arrowObject, transform.position, transform.rotation);
 		g.GetComponent<Indicator> ().player = this;
 		aimArrow = g.GetComponent<Indicator> ();
-	}
+        sounds = GetComponents<AudioSource>();
+    }
 
 	void Update(){
 		Move ();
@@ -43,6 +46,12 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
 		aimDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 
 		aimArrow.SetDirection(aimDirection);
+        stepTimer -= Time.deltaTime;
+        if (rb.velocity != Vector2.zero && stepTimer < 0)
+        {
+            sounds[Random.Range(4, 6)].Play();
+            stepTimer = 0.25f;
+        }
     }
 
 	public void Shove(Vector2 dir){
@@ -165,6 +174,8 @@ public class Player : MonoBehaviour, IDamageable, IMoveable {
             {
                 Die();
             }
+            sounds[Random.Range(1, 3)].Play(); //pain
+            sounds[3].Play();                 //fireball hit
         }
         
 	}

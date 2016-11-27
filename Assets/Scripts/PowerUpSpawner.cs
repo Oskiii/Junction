@@ -7,7 +7,7 @@ public class PowerUpSpawner : MonoBehaviour {
 
     [SerializeField]
     private List<GameObject> PowerUps;
-    public float SpawnDelay;
+    public float SpawnDelay = 20;
     private float lastSpawn;
 
     void SpawnPowerUp()
