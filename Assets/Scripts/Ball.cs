@@ -19,38 +19,32 @@ public class Ball : MonoBehaviour, IMoveable {
 
 	public void Move ()
 	{
-        moveDir = (currentTarget.transform.position - transform.position).normalized;
+		moveDir = (currentTarget.transform.position - transform.position).normalized;
         float angle = (Mathf.Atan2(moveDir.y, moveDir.x) * 180/Mathf.PI + 270) % 360;
-        
-        if (22.5 > angle || angle > 337.5)
-        {
-            moveDir = new Vector2(0, 1);
-        }
-        else if (angle < 67.5)
-        {
-            moveDir = new Vector2(-1, 1).normalized;
-        }
-        else if (angle < 112.5)
-        {
-            moveDir = new Vector2(-1, 0);
-        }
-        else if ( angle < 157.5)
-        {
-            moveDir = new Vector2(-1, -1).normalized;
-        }
-        else if (angle < 202.5)
-        {
-            moveDir = new Vector2(0, -1);
-        }
-        else if (angle < 247.5)
-        {
-            moveDir = new Vector2(1, -1).normalized;
-        }
-        else if (angle < 292.5)
-        {
-            moveDir = new Vector2(1, 0);
-        }
-        else
+		moveDir = -transform.up;
+
+		if (20 > angle || angle > 340) {
+			moveDir = new Vector2 (0, 1);
+		} else if (angle < 25) {
+		} else if (angle < 65) {
+			moveDir = new Vector2 (-1, 1).normalized;
+		} else if (angle < 70) {
+		} else if (angle < 110) {
+			moveDir = new Vector2 (-1, 0);
+		} else if (angle < 115) {
+		} else if (angle < 155) {
+			moveDir = new Vector2 (-1, -1).normalized;
+		} else if (angle < 160) {
+		} else if (angle < 200) {
+			moveDir = new Vector2 (0, -1);
+		} else if (angle < 205) {
+		} else if (angle < 245) {
+			moveDir = new Vector2 (1, -1).normalized;
+		} else if (angle < 250) {
+		} else if (angle < 290) {
+			moveDir = new Vector2 (1, 0);
+		} else if (angle < 295) {
+		} else if(angle < 335)
         {
             moveDir = new Vector2(1, 1).normalized;
         }
